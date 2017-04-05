@@ -8,6 +8,7 @@ const CurrentMaxForm = ({ currentMaxes = {}, onChange, onSubmit }) => (
         id="deadlift"
         name="deadlift"
         onChange={event => onChange('deadlift', event.target.value)}
+        placeholder="405"
         type="num"
         value={currentMaxes.deadlift} />
     </div>
@@ -17,6 +18,7 @@ const CurrentMaxForm = ({ currentMaxes = {}, onChange, onSubmit }) => (
         id="squat"
         name="squat"
         onChange={event => onChange('squat', event.target.value)}
+        placeholder="315"
         type="num"
         value={currentMaxes.squat}/>
     </div>
@@ -26,6 +28,7 @@ const CurrentMaxForm = ({ currentMaxes = {}, onChange, onSubmit }) => (
         id="benchpress"
         name="benchpress"
         onChange={event => onChange('benchPress', event.target.value)}
+        placeholder="225"
         type="num"
         value={currentMaxes.benchPress} />
     </div>
@@ -35,6 +38,7 @@ const CurrentMaxForm = ({ currentMaxes = {}, onChange, onSubmit }) => (
         id="overheadpress"
         name="overheadpress"
         onChange={event => onChange('overheadPress', event.target.value)}
+        placeholder="135"
         type="num"
         value={currentMaxes.overheadPress} />
     </div>
