@@ -27,6 +27,8 @@ class App extends Component {
         Math.floor(currentMax * (cycleBase[i]) / 5) * 5,
         Math.floor(currentMax * (cycleBase[i] + 0.1) / 5) * 5,
         Math.floor(currentMax * (cycleBase[i] + 0.2) / 5 ) * 5,
+        Math.floor(currentMax * (cycleBase[i] + 0.25) / 5 ) * 5,
+        Math.floor(currentMax * (cycleBase[i] + 0.3) / 5 ) * 5,
       ]);
     }
     return cycle;
