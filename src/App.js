@@ -26,6 +26,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
+        this.getMaxes(user.uid);
       } else {
         // No user is signed in.
         this.setState({ user: null });
@@ -34,7 +35,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authCheck();
+    this.authCheck()
   }
 
   calculateCycle(currentMax) {
@@ -50,6 +51,16 @@ class App extends Component {
       ]);
     }
     return cycle;
+  }
+
+  getMaxes(uid) {
+    firebase.database().ref(`/maxes/${uid}`).once('value')
+      .then(result => {
+        const currentMaxes = result.val();
+        if (currentMaxes) {
+          this.setState({ currentMaxes });
+        }
+      });
   }
 
   handleCurrentMaxChange(lift, value) {
@@ -96,6 +107,14 @@ class App extends Component {
           currentMaxes={currentMaxes}
           handleChange={this.handleCurrentMaxChange}
           handleSubmit={this.handleCurrentMaxSubmit} />
+        <button onClick={() => {
+          firebase.database().ref(`maxes/${user.uid}`).set({
+            benchPress: currentMaxes.benchPress,
+            deadlift: currentMaxes.deadlift,
+            squat: currentMaxes.squat,
+            overheadPress: currentMaxes.overheadPress,
+          });
+        }} type="button">Save</button>
         {cycles !== null && (
           cycles.map(cycle => {
             return (
